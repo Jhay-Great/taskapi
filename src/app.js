@@ -13,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 
+// HOME ENDPOINT
 app.get('/', (req, res) => {
     return res.json({message: 'app is running navigate to your preferred endpoint'});
 })
@@ -31,6 +32,7 @@ app.patch('/tasks/:id/', updateStatus);
 // DELETE - A TASK FROM THE ARRAY DB
 app.delete('/tasks/:id/remove', deleteTask);
 
+// ALL OTHER ENDPOINTS
 app.use('*', (req, res) => {
     return res.status(404).json({
         message: 'Endpoint not found'
