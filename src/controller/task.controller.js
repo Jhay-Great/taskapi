@@ -1,8 +1,5 @@
 const uuid = require('uuid');
 let taskDB = [];
-const taskBin = [];
-
-// console.log(uuid.v4())
 
 // HELPER FUNCTIONS
 const findById = (id) => taskDB.filter(task => task.id === id);
@@ -50,7 +47,6 @@ const displayAllPost = function(req, res) {
 // read individual post by id
 const displayTaskById = function (req, res) {
     const { id } = req.params;
-    console.log(id)
 
     const task = findById(id);
 
@@ -70,16 +66,7 @@ const displayTaskById = function (req, res) {
 const updateTask = function (req, res) {
     const {title, task: taskBody} = req.body;
     const { id } = req.params;
-
-    // const savedTask = findById(id);
-    // const updatedTask = {
-    //     ...savedTask,
-    //     title,
-    //     task,
-    // }
-
-    // console.log(updateTask);
-
+    
     const updatedDB = taskDB.map(task => {
         if (task.id !== id) return task;
         const updatedStatus = {
@@ -87,14 +74,12 @@ const updateTask = function (req, res) {
             title,
             task: taskBody,
         }
-
-        console.log(updatedStatus);
+        
         return updatedStatus
 
     });
 
     taskDB = updatedDB;
-    console.log('current db: ', taskDB);
 
     return res.status(200).json({
         message: 'Task updated successfully',
@@ -114,8 +99,7 @@ const updateStatus = function (req, res) {
             ...task,
             status,
         }
-
-        console.log(updatedStatus);
+        
         return updatedStatus
 
     });
