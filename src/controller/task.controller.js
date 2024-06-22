@@ -39,7 +39,7 @@ const displayAllPost = function(req, res) {
         }
 
         return res.status(200).json({
-            post: taskDB,
+            posts: taskDB,
         })
         
     } catch (error) {
@@ -137,28 +137,28 @@ const deleteTask = function (req, res) {
     taskDB = db;
     
     return res.status(200).json({
-        db: taskDB,
+        posts: taskDB,
         message: 'Successfully deleted task',
     })
 }
 
 // updating task function
-const updateData = function (...data) {
-    const [title, taskBody, status] = data;
-    console.log({data, title, status, taskBody})
-    const currentDB = taskDB.map(task => {
-        if (task.id !== id) return;
-        const updatedData = {
-            ...task,
-            title: title || task.title,
-            task: taskBody || task.task,
-            status: status || task.status,
+// const updateData = function (...data) {
+//     const [title, taskBody, status] = data;
+//     console.log({data, title, status, taskBody})
+//     const currentDB = taskDB.map(task => {
+//         if (task.id !== id) return;
+//         const updatedData = {
+//             ...task,
+//             title: title || task.title,
+//             task: taskBody || task.task,
+//             status: status || task.status,
 
-        }
-        return updatedData
-    })
-    return currentDB;
-}
+//         }
+//         return updatedData
+//     })
+//     return currentDB;
+// }
 
 module.exports = {
     createPost,
